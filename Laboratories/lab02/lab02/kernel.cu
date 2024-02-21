@@ -65,40 +65,48 @@ __global__ void vectorAdd(int* a, int* b, int* c, int N) {
 }
 
 int main() {
+    //tamaño de vectores
     const int N = 10000;
-    const int dataSize = N * sizeof(int);
+    const int dataSize = N * sizeof(int); //tamaño byte vectores
 
-    int* a, * b, * c;
-    int* d_a, * d_b, * d_c;
+    int* a, * b, * c; //cpu
+    int* d_a, * d_b, * d_c; //gpu
 
-    a = (int*)malloc(dataSize);
+    a = (int*)malloc(dataSize); //asignacion de memoria en cpu para vectores
     b = (int*)malloc(dataSize);
     c = (int*)malloc(dataSize);
 
-    GPUErrorAssertion(cudaMalloc((void**)&d_a, dataSize));
+    GPUErrorAssertion(cudaMalloc((void**)&d_a, dataSize));  //Asignar memoria GPU
     GPUErrorAssertion(cudaMalloc((void**)&d_b, dataSize));
     GPUErrorAssertion(cudaMalloc((void**)&d_c, dataSize));
 
+    //Inicializar CPU
     for (int i = 0; i < N; i++) {
-        a[i] = i;
-        b[i] = i;
+        a[i] = rand();
+        b[i] = rand();
     }
 
+    //CPU -> GPU
     GPUErrorAssertion(cudaMemcpy(d_a, a, dataSize, cudaMemcpyHostToDevice));
     GPUErrorAssertion(cudaMemcpy(d_b, b, dataSize, cudaMemcpyHostToDevice));
 
     dim3 blockSize(256);
     dim3 gridSize((N + blockSize.x - 1) / blockSize.x);
 
+    //KERNEL
     vectorAdd << <gridSize, blockSize >> > (d_a, d_b, d_c, N);
     GPUErrorAssertion(cudaDeviceSynchronize());
 
+    //GPU -> CPU
     GPUErrorAssertion(cudaMemcpy(c, d_c, dataSize, cudaMemcpyDeviceToHost));
 
-    for (int i = 0; i < 20; i++) {
+    //Imprimir
+    for (int i = 0; i < 100; i++) {
         printf("c[%d] = %d\n", i, c[i]);
     }
 
+
+    //Liberar memoria
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_c);
