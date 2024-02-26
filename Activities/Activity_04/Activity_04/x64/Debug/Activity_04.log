@@ -1,0 +1,26 @@
+﻿  Compiling CUDA source file kernel.cu...
+  
+  C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\include"  -G   --keep-dir x64\Debug  -maxrregcount=0   --machine 64 --compile -cudart static  -g  -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /FS /Zi /RTC1 /MDd " -Xcompiler "/Fdx64\Debug\vc143.pdb" -o C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\x64\Debug\kernel.cu.obj "C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu" 
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(30): warning #177-D: variable "start" was declared but never referenced
+        cudaEvent_t start, stop;
+                    ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(30): warning #177-D: variable "stop" was declared but never referenced
+        cudaEvent_t start, stop;
+                           ^
+  
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(31): warning #177-D: variable "time" was declared but never referenced
+        float time;
+              ^
+  
+  kernel.cu
+  tmpxft_00004748_00000000-7_kernel.cudafe1.cpp
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(65): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(30): warning C4101: 'start': unreferenced local variable
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(31): warning C4101: 'time': unreferenced local variable
+C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\Activity_04\kernel.cu(30): warning C4101: 'stop': unreferenced local variable
+  Activity_04.vcxproj -> C:\Users\CIAC\Desktop\AdvancedParallelProgramming\Activities\Activity_04\x64\Debug\Activity_04.exe
